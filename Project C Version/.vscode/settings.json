@@ -1,0 +1,10 @@
+{
+    "files.associations": {
+        "*.ino": "arduino-output",
+        "stdlib.h": "c",
+        "complex.h": "c",
+        "stdio.h": "c",
+        "__locale": "c",
+        "ios": "c"
+    }
+}

@@ -1,0 +1,55 @@
+\documentclass[12pt, reqno]{amsart}
+\usepackage[margin = 0.5 in]{geometry}
+\usepackage{multicol}
+\usepackage{float}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{fancyvrb}
+\usepackage{physics}
+
+\frenchspacing
+
+\setlength{\abovecaptionskip}{5pt plus 3pt minus 3pt}
+
+\hypersetup{colorlinks=true,allcolors=blue}
+\pagestyle{fancy} \fancyhead{} \fancyfoot[C]{\normalsize\thepage}
+\renewcommand{\headrulewidth}{0pt}
+\begin{document}
+\title{ME 5311 \quad Assignment 4 \quad Jacob Ivanov}
+
+\maketitle
+\begin{multicols}{2}
+    \section{Implicit Centered-Difference Stability}
+    With the following Implicit Scheme, we can conduct a von Neumman Stability Analysis
+    \begin{equation}
+        \frac{u_i^{n+1} - u_i^n}{\Delta t} + \alpha \frac{u_{i+1}^{n+1} - u_{i-1}^{i+1}}{2 \Delta x} = 0
+    \end{equation}
+    By replacing every $u_i^n$ term with $g^n e^{\underline{i} i \theta} $, we can obtain the following:
+    \begin{equation}
+        \frac{g^{n+1} e^{\underline{i} i \theta} - g^n e^{\underline{i} i \theta}}{\Delta t} + \alpha \frac{g^{n+1} e^{\underline{i} (i+1) \theta} - g^{n+1} e^{\underline{i} (i-1) \theta}}{2 \Delta x} = 0
+    \end{equation}
+    Which by factoring like terms, we can find:
+    \begin{equation}
+        e^{\underline{i} i \theta} \left[ \frac{g^n (g-1)}{\Delta t} + \frac{\alpha g^n g}{2 \Delta x} \left( e^{\underline{i} \theta} - e^{- \underline{i} \theta} \right) \right] = 0
+    \end{equation}
+    By using Euler's Formula, we can expand the exponentials. We can also divide through by $e^{\underline{i} i \theta}$ and $g^n$ to obtain the following:
+    \begin{equation}
+        \frac{g-1}{\Delta t} + \frac{\alpha g \underline{i}}{\Delta x} \sin(\theta) = 0
+    \end{equation}
+    We can then isolate $g$:
+    \begin{equation}
+        g \left[ \frac{1}{\Delta t} + \frac{\alpha \underline{i} \sin(\theta)}{\Delta x} \right] = \frac{1}{\Delta t}
+    \end{equation}
+    By solving for $g$, canceling out a $\Delta t$ term, and multiplying by the complex conjugate over itself, we can find the following:
+    \begin{equation}
+        g = \frac{\Delta x^2}{\Delta x^2 + \Delta t^2 \alpha^2 \sin^2 (\theta)} - \underline{i} \frac{\Delta x \Delta t \alpha \sin(\theta)}{\Delta x^2 + \Delta t^2 \alpha^2 \sin^2 (\theta)}
+    \end{equation}
+    Which if we can the norm, and simplify:
+    \begin{equation}
+        |g|^2 = \frac{\Delta x}{\Delta x^2 + \Delta t^2 \alpha^2 \sin^2 (\theta)}
+    \end{equation}
+    It can be seen that for any $\Delta x > 1$, $|g|^2 > 1$. This does not seem to be correct. 
+
+\end{multicols}
+\end{document}
